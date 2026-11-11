@@ -1,68 +1,50 @@
-# ElevateIQ — Intelligent Elevator Scheduling Using Q-Learning
+# ElevateIQ 🚀
+### Intelligent Elevator Scheduling Using Reinforcement Learning
 
-A Python reinforcement-learning prototype for a single elevator in a 10-floor building.
+An AI-powered elevator scheduling simulation that uses **Q-Learning** to learn intelligent elevator movement and passenger scheduling decisions.
 
-## What's improved in this version
-- **Valid-action masking:** the agent only explores/selects legal up/down/stop actions at a floor. This avoids wasting training steps on impossible boundary moves.
-- **Masked Bellman update:** the Q-learning target considers only legal next actions.
-- **More informative evaluation:** reports completed journeys, average wait until boarding, movement, people still waiting, and the total age of the remaining waiting queue.
-- **Professional Pygame dashboard:** building shaft, floor call indicators, passenger queues/destinations, onboard destinations, current observation, KPIs, and keyboard controls.
-- **Six training charts:** reward, completed journeys, average wait, movement, end-of-episode queue, and invalid actions.
-- **Matched-seed baseline comparison:** RL and nearest-target heuristic are evaluated against the same arrival seeds.
+## ✨ Features
 
-## Requirements
-- Python 3.10+
+- 🧠 Q-Learning based intelligent scheduling
+- 🏢 10-floor elevator simulation
+- 👥 Dynamic passenger request generation
+- 🎯 Reward-based learning and decision-making
+- 📊 Training performance and learning curves
+- 📈 Q-Learning vs heuristic baseline comparison
+- 🖥️ Interactive Pygame dashboard
+- 📉 Passenger waiting time and elevator movement analysis
+
+## 🖥️ Application Preview
+
+**ElevateIQ – Intelligent Elevator Control Dashboard**
+
+![ElevateIQ Dashboard](screenshots/elevator_interface.png)
+
+## 🛠️ Built With
+
+- Python
+- Q-Learning
 - NumPy
+- Pandas
 - Matplotlib
 - Pygame
 
-## Windows setup
-Open the extracted project folder in VS Code and run:
+## 📂 Project Structure
 
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-pip install -r requirements.txt
+```text
+Intelligent-Elevator-RL/
+│
+├── src/              # Core Python implementation
+├── models/           # Trained Q-Learning model
+├── results/          # Training graphs and metrics
+├── screenshots/      # Application screenshots
+│
+├── README.md
+├── requirements.txt
+├── evaluation_results.csv
+├── CHANGELOG.md
+└── .gitignore
 ```
-
-If PowerShell blocks activation, use Command Prompt:
-
-```cmd
-venv\Scripts\activate.bat
-```
-
-## Run order
-
-### 1. Train the improved agent
-```bash
-python train.py
-```
-This trains for 4,000 episodes (400 steps per episode) and saves:
-- `q_table.npy`
-- `training_metrics.csv`
-- `learning_curves.png`
-
-Training may take several minutes depending on the computer.
-
-### 2. Evaluate against the baseline
-```bash
-python evaluate.py
-```
-This saves:
-- `evaluation_results.csv`
-- `comparison_dashboard.png`
-
-### 3. Launch the interactive dashboard
-```bash
-python visualize.py
-```
-Controls:
-- SPACE: pause/resume
-- UP arrow: faster
-- DOWN arrow: slower
-- R: reset
-- ESC: exit
 
 ## RL formulation
 
@@ -89,27 +71,92 @@ At terminal steps, the future-value term is omitted. At non-terminal steps, the 
 
 Reward weights are experimental design choices. They should be reported and not described as universally optimal.
 
-## Metrics and careful interpretation
-- **Completed journeys:** passengers who reached their destination.
-- **Average wait until boarding:** arrival-to-boarding wait for passengers who boarded during the episode. It does not include people still waiting at the episode end.
-- **People waiting at end:** number of passengers still in queues at termination.
-- **Total age of passengers still waiting:** sum of their elapsed waiting times at termination.
-- **Movement:** number of one-floor elevator moves; interpret together with completed journeys and waiting.
-- **Reward:** meaningful only under this exact reward function.
+## ⚙️ Getting Started
 
-The baseline is a transparent nearest-target heuristic, not an optimal controller. A fair comparison uses matched random seeds, but results still depend on random demand and training settings. Do not claim RL wins every metric unless the measured output supports it.
+### 1. Clone the repository
 
-## Team split (2 students)
-**Student 1:** environment, passenger arrivals, state/action/reward definition, interface and testing.  
-**Student 2:** Q-learning, training, learning curves, evaluation and comparison.  
-Both members should be able to explain the full RL loop.
+```bash
+git clone YOUR_REPOSITORY_URL
+cd Intelligent-Elevator-RL
+```
 
-## Limitations
-- One elevator only
-- Simplified random passenger arrival process
-- No peak-hour patterns, passenger priority or accessibility constraints
-- State aggregation loses exact per-floor demand details
-- Tabular Q-Learning may not scale to large multi-elevator systems
+### 2. Create a virtual environment
 
-## Future enhancements
-Multiple elevators, time-of-day demand profiles, destination-aware group scheduling, passenger priority, energy modeling, and DQN for richer state spaces.
+```bash
+python -m venv venv
+```
+
+Activate on Windows:
+
+```bash
+venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## ▶️ Run the Project
+
+Run the following commands from the project root:
+
+**Train the agent**
+
+```bash
+python src/train.py
+```
+
+**Evaluate the agent**
+
+```bash
+python src/evaluate.py
+```
+
+**Launch the visualization**
+
+```bash
+python src/visualize.py
+```
+
+Run training first if a trained Q-table is not already available.
+
+Controls:
+- SPACE: pause/resume
+- UP arrow: faster
+- DOWN arrow: slower
+- R: reset
+- ESC: exit
+
+## 📊 Performance Analysis
+
+The system evaluates the learned policy using:
+
+- Cumulative reward
+- Completed passenger journeys
+- Average passenger waiting time
+- Elevator floor movements
+- Remaining waiting passengers
+
+The learned Q-Learning policy is compared with a nearest-target heuristic baseline.
+
+Training curves and comparison results are available in the `results/` directory.
+
+## 🔮 Future Enhancements
+
+- Multi-elevator scheduling
+- Deep Q-Network (DQN)
+- Multi-agent Reinforcement Learning
+- Realistic passenger arrival patterns
+- Advanced elevator traffic optimization
+
+## 👩‍💻 Project Team
+
+**Team Size:** 2 Students
+
+**Domain:** Artificial Intelligence | Reinforcement Learning
+
+---
+
+⭐ *ElevateIQ – Learning Smarter Elevator Scheduling Through Reinforcement Learning.*
