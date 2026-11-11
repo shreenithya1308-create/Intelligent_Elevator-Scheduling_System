@@ -18,7 +18,7 @@ An AI-powered elevator scheduling simulation that uses **Q-Learning** to learn i
 
 **ElevateIQ – Intelligent Elevator Control Dashboard**
 
-![ElevateIQ Dashboard](screenshots/elevator_interface.png)
+![ElevateIQ Dashboard](results/elevator_interface.png)
 
 ## 🛠️ Built With
 
