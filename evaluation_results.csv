@@ -1,0 +1,7 @@
+metric,q_learning,baseline,preferred_direction
+Completed journeys,57.91,58.04,higher
+Average wait until boarding,8.711655028686092,14.29650188663283,lower
+Floor movements,264.41,277.44,context
+People waiting at end,1.72,2.54,lower
+Total age of passengers still waiting,20.08,45.31,lower
+Cumulative reward,269.00290000000007,239.03040000000013,higher
